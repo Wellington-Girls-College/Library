@@ -37,6 +37,55 @@ public class Books
         this.currBookId = 3;        // Store the current book id
         
     }
+    
+    /**
+     * Set bookId
+     */
+    public void setBookId(){
+        this.currBookId += 1;
+        
+    }
+    /**
+     * Add a book to the map
+     */
+    public void addBook(String name, String author, int qty){
+        library.put(currBookId, new Book(currBookId, name, author, qty));
+    }
+    /**
+     * Finds a book basked on name
+     * Sets the current book instance if found
+     * @return boolean false if not found
+     */
+    
+    public boolean findBook(String name){
+        //Search for book
+        for (int bookId: library.keySet()){
+            if(library.get(bookId).getName().toLowerCase().equals(name.toLowerCase())){
+                currBook = library.get(bookId); //Set the current Book
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Getter for the current instance
+     */
+    public Book getBook(){
+        return  this.currBook;
+    }
+    
+    /**
+     * Print details of all books
+     */
+    public void printAll(){
+        //Traverse Map
+        for (int bookId : library.keySet()){
+            UI.println(bookId + " Details: ");
+            UI.println(library.get(bookId).getName() + " "
+                        +library.get(bookId).getAuthor() + " "
+                        +library.get(bookId).getQuantity());
+        }
+    }
     /**
      * Menu to print and call appropriate methods
      */
@@ -52,14 +101,17 @@ public class Books
             choice = UI.askString("Enter a choice: ");
             
                 if (choice.equalsIgnoreCase("A")){
-                    //add books
+                    addBook("Night", "Eli Vissel", 55);
                     
                 }
                 else if(choice.equalsIgnoreCase("F")){
-                    //findBook()
+                    if (findBook("the wicked king"))
+                    {
+                        UI.println(currBook.getName());
+                    };
                 }
                 else if(choice.equalsIgnoreCase("P")){
-                    //printall()
+                    printAll();
                 }
                 else if(choice.equalsIgnoreCase("Q")){
                     UI.println("Goodbye");
