@@ -101,14 +101,22 @@ public class Books
             choice = UI.askString("Enter a choice: ");
             
                 if (choice.equalsIgnoreCase("A")){
+                    // Ask the user for a title, anthor and qyantity - next job for students to do
                     addBook("Night", "Eli Vissel", 55);
                     
                 }
                 else if(choice.equalsIgnoreCase("F")){
-                    if (findBook("the wicked king"))
+                    //Ask user for a book
+                    String bookName = UI.askString("Name of book: ");
+                    if (findBook(bookName)) // see if they can change this to a getter method, ask the user what the book they are look for and store it in a param
                     {
-                        UI.println(currBook.getName());
-                    };
+                        UI.println("Found Book!");
+                        UI.println("Name" + currBook.getName());
+                        UI.println("Author: " + currBook.getAuthor());
+                        UI.println("Quantity: " + currBook.getQuantity());
+                    }else{
+                        UI.println(bookName + " not found!");
+                    }
                 }
                 else if(choice.equalsIgnoreCase("P")){
                     printAll();
