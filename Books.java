@@ -48,8 +48,8 @@ public class Books
     /**
      * Add a book to the map
      */
-    public void addBook(String name, String author, int qty){
-        library.put(currBookId, new Book(currBookId, name, author, qty));
+    public void addBook(String name, String author, int qty, String img){
+        library.put(currBookId, new Book(currBookId, name, author, qty, img));
     }
     /**
      * Finds a book basked on name
@@ -62,6 +62,7 @@ public class Books
         for (int bookId: library.keySet()){
             if(library.get(bookId).getName().toLowerCase().equals(name.toLowerCase())){
                 currBook = library.get(bookId); //Set the current Book
+                library.get(bookId).displayBook(); //Show book cover on canvas
                 return true;
             }
         }
@@ -102,7 +103,7 @@ public class Books
             
                 if (choice.equalsIgnoreCase("A")){
                     // Ask the user for a title, anthor and qyantity - next job for students to do
-                    addBook("Night", "Eli Vissel", 55);
+                    //addBook("Night", "Eli Vissel", 55);
                     
                 }
                 else if(choice.equalsIgnoreCase("F")){

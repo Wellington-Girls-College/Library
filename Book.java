@@ -15,16 +15,42 @@ public class Book
     private String author;
     private int quantity;
     private String image;
+    static final String DEFAULT_IMAGE = "book.jpg";
 
     /**
-     * Constructor for objects of class Books
+     * Constructor for objects of class Books Construtor overloading so two constructors with different param
      */
-    public Book(int key, String nm, String auth, int qty)
+    public Book(int key, String nm, String auth, int qty, String img)
     {
         id = key;
         name = nm; 
         author = auth;
         quantity = qty;
+        if( img == null) {
+            this.image = DEFAULT_IMAGE; // add default img if user clicks cancel
+        }else{
+            this.image = img;
+        }
+    }
+    
+    /**
+     * Constructor overloading
+     * Set default imahe to obj
+     */
+    public Book(int key, String nm, String auth, int qty)
+    {
+        this(key, nm, auth, qty, DEFAULT_IMAGE);
+    }
+    /**
+     * Display image on GUI
+     */
+    public void displayBook() {
+        int locX = 100;
+        int locY = 100;
+        final double WIDTH = 100;
+        final double HEIGHT = 100;
+        
+        UI.drawImage(this.image, locX, locY, WIDTH, HEIGHT);
     }
 
     /**

@@ -41,18 +41,23 @@ public class GUI
         //Check boundaries for the number of books1 added
         do {
             quantity = UI.askInt("Quantity: ");
-            if ((quantity > 0) && (quantity < MAX_QUANTITY)){
+            if ((quantity > 0) && (quantity <= MAX_QUANTITY)){
                 UI.println("Added");
             }else if (quantity > MAX_QUANTITY) {
                 UI.println("Must be less than 100");
             }else if (quantity < 1){
+                UI.println("Must be greater than 0");
+            }else{
                 UI.println("Must be a number!");
             }
         }while (0 > quantity || quantity > MAX_QUANTITY);
+        // add a book image for display in the GUI
+        
+        String imgFileName = UIFileChooser.open("Choose Image File: ");
         
         //Increment the book ID count and add to hashmap
         books.setBookId();  //increment the id by 1
-        books.addBook(name, author, quantity);
+        books.addBook(name, author, quantity, imgFileName);
     }
     /**
      * Finds book based on name
